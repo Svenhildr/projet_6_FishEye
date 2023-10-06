@@ -15,11 +15,6 @@ function displayData(photographers) {
         const photographerModel = photographerTemplate(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
         photographersSection.appendChild(userCardDOM);
-
-        const link = document.createElement("a");
-        link.href = `photographer.html?id=${photographer.id}`; // L'URL avec ID du photographe
-        link.appendChild(userCardDOM); // Ajoute carte photographe au lien
-        photographersSection.appendChild(link);
     });
 }
 /*     async function init() {

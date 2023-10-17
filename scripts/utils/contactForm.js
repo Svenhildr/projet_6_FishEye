@@ -1,9 +1,115 @@
-function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
+const mainWrapper = document.getElementById("main");
+const modal = document.getElementById("contact_modal");
+const modalCloseBtn = document.querySelector("#contact_modal header img");
+const body = document.body;
+const openModalBtn = document.querySelector(".contact_button");
+
+const prenomInput = document.getElementById("input_prenom");
+const nomInput = document.getElementById("input_nom");
+const emailInput = document.getElementById("input_email");
+const messageInput = document.getElementById("input_message");
+
+const nameRegex = /^[a-zA-Z]{2,}$/;
+const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+// import { photographerId } from "../pages/photographer.js";
+closeModal();
+
+export function contactForm(photographerId) {
+    console.log(photographerId);
+    fetch("data/photographers.json")
+        .then((response) => {
+            return response.json();
+        })
+        .then((datas) => {
+            const { photographers, media } = datas;
+            //Filtrer photogrpahe opour récupere le bon et les mbon medias
+            let selectedPhotographer = "";
+            for (let i = 0; i < photographers.length; i++) {
+                if (photographers[i].id === parseInt(photographerId)) {
+                    selectedPhotographer = photographers[i];
+                }
+            }
+            document.getElementById("formTitle").textContent = `Contactez ${selectedPhotographer.name}`;
+            openModalBtn.addEventListener("click", openModal);
+            modalCloseBtn.addEventListener("click", closeModal);
+        });
+}
+// Attachez les gestionnaires d'événements aux boutons
+function openModal() {
+    mainWrapper.setAttribute("aria-hidden", "true");
+    modal.setAttribute("aria-hidden", "false");
+    body.classList.add("no-scroll");
+    modal.style.display = "flex";
+    modalCloseBtn.focus();
 }
 
+// Fonction pour fermer la modal
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
+    mainWrapper.setAttribute("aria-hidden", "false");
+    modal.setAttribute("aria-hidden", "true");
+    body.classList.remove("no-scroll");
     modal.style.display = "none";
+    openModalBtn.focus();
+}
+
+// Ajoutez également une gestion de la fermeture de la modal lorsque vous cliquez en dehors de celle-ci
+document.addEventListener("click", (event) => {
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+// Gérez également la fermeture de la modal en appuyant sur la touche Échap
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+});
+
+let form = document.querySelector("form");
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (checkInput()) {
+        console.log("Formulaire valide !");
+        console.log("Prénom: " + prenomInput.value);
+        console.log("Nom: " + nomInput.value);
+        console.log("Email: " + emailInput.value);
+    } else {
+        return console.log("erreur de l'envoi du formulaire");
+    }
+});
+
+function checkInput() {
+    const prenomValue = prenomInput.value;
+    const nomValue = nomInput.value;
+    const emailValue = emailInput.value;
+    let valid = true;
+
+    const prenomError = document.getElementById("prenom_error");
+    prenomError.textContent = "";
+
+    const nomError = document.getElementById("nom_error");
+    nomError.textContent = "";
+
+    const emailError = document.getElementById("email_error");
+    emailError.textContent = "";
+
+    if (!nameRegex.test(prenomValue)) {
+        prenomError.textContent = "Veuillez renseigner un prénom valide";
+        valid = false;
+    }
+
+    if (!nameRegex.test(nomValue)) {
+        nomError.textContent = "Veuillez renseigner un nom valide";
+        valid = false;
+    }
+
+    if (!emailRegex.test(emailValue)) {
+        emailError.textContent = "Veuillez renseigner une adresse email valide";
+        valid = false;
+    }
+
+    return valid;
 }

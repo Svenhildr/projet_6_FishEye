@@ -1,3 +1,5 @@
+import photographerTemplate from "../templates/photographer.js";
+
 fetch("data/photographers.json")
     .then((response) => {
         return response.json();
@@ -8,6 +10,12 @@ fetch("data/photographers.json")
         displayData(photographers);
     });
 
+/* let logoImg = document.querySelector(" .logo");
+logoImg.addEventListener("click", () => {
+    window.location.href = `index.html`;
+    logoImg.setAttribute("alt", "Fisheye home page");
+}); */
+
 function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
@@ -17,6 +25,7 @@ function displayData(photographers) {
         photographersSection.appendChild(userCardDOM);
     });
 }
+
 /*     async function init() {
       // Récupère les datas des photographes
       const { photographers } = await getPhotographers();

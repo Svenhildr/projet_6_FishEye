@@ -27,19 +27,9 @@ fetch("data/photographers.json")
             }
         }
 
-        // Vérifier si un photographe a été trouvé
-        /*         if (selectedPhotographer) {
-            // Mettre à jour le contenu de la page
-            document.getElementById("formTitle").textContent = `Contactez ${selectedPhotographer.name}`;
-        } else {
-            // Gérer le cas où aucun photographe n'a été trouvé
-            // console.log("Photographe non trouvé");
-        } */
         photographerTemplate(selectedPhotographer);
-        console.log(selectedPhotographer);
+        // console.log(selectedPhotographer);
     })
     .catch((error) => {
         console.error(error);
     });
-
-// async function {}

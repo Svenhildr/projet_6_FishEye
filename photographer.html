@@ -2,9 +2,11 @@
 <html>
     <head>
         <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="css/photographer.css" rel="stylesheet" type="text/css" />
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="assets/favicon.png" />
         <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/b50abd1df8.js" crossorigin="anonymous"></script>
         <title>Fisheye - photographe</title>
     </head>
     <body>
@@ -15,14 +17,46 @@
         </header>
         <main id="main">
             <div class="photograph-header">
-                <button class="contact_button" onclick="openModal()">Contactez-moi</button>
+                <div class="header_info">
+                    <h1 id="name"></h1>
+                    <span id="city"></span>
+                    <p id="quote"></p>
+                </div>
+                <button class="contact_button">Contactez-moi</button>
+                <img class="card_img" src="" alt="" id="portrait" />
+                <!-- <button class="contact_button" onclick="openModal()">Contactez-moi</button> -->
+            </div>
+            <div class="photograph-container">
+                <div class="sorting_content">
+                    <label for="sorting-select">Trier par</label>
+                    <select name="sorting-select" id="sort">
+                        <option value="option_likes">Popularité</option>
+                        <option value="option_date">Date</option>
+                        <option value="option_title">Titre</option>
+                    </select>
+                </div>
+                <div class="photo_container">
+                    <!-- <div class="photo_content">
+                        <img class="card_photo" src="" alt="" /> 
+                              <div class="photo_info">
+                              <p class="photo_title"></p>
+                            <span class="photo_likes"></span> 
+                             <i class="fa-sharp fa-solid fa-heart heart-full"></i>
+                        </div> 
+                    </div>-->
+                </div>
+                <div class="likes_container">
+                    <span id="total_likes"></span>
+                    <i class="fa-sharp fa-solid fa-heart heart-full"></i>
+                    <span id="price"></span>
+                </div>
             </div>
         </main>
         <div id="contact_modal">
             <div class="modal">
                 <header>
                     <h2 id="formTitle">Contactez-moi</h2>
-                    <img src="assets/icons/close.svg" onclick="closeModal()" />
+                    <img src="assets/icons/close.svg" />
                 </header>
                 <form>
                     <div>
@@ -45,8 +79,8 @@
                 </form>
             </div>
         </div>
-        <script type="module" src="/scripts/templates/media.js"></script>
+        <script src="/scripts/templates/media.js"></script>
+        <script src="/scripts/utils/contactForm.js"></script>
         <script type="module" src="/scripts/pages/photographer.js"></script>
-        <!-- <script type="module" src="/scripts/utils/contactForm.js"></script> -->
     </body>
 </html>

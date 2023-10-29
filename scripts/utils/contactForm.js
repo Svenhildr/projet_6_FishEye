@@ -3,6 +3,7 @@ const modal = document.getElementById("contact_modal");
 const modalCloseBtn = document.querySelector("#contact_modal header img");
 const body = document.body;
 const openModalBtn = document.querySelector(".contact_button");
+const form = document.querySelector("form");
 
 const prenomInput = document.getElementById("input_prenom");
 const nomInput = document.getElementById("input_nom");
@@ -12,29 +13,10 @@ const messageInput = document.getElementById("input_message");
 const nameRegex = /^[a-zA-Z]{2,}$/;
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-// import { photographerId } from "../pages/photographer.js";
 closeModal();
 
-export function contactForm(photographerId) {
-    console.log(photographerId);
-    fetch("data/photographers.json")
-        .then((response) => {
-            return response.json();
-        })
-        .then((datas) => {
-            const { photographers, media } = datas;
-            //Filtrer photogrpahe opour récupere le bon et les mbon medias
-            let selectedPhotographer = "";
-            for (let i = 0; i < photographers.length; i++) {
-                if (photographers[i].id === parseInt(photographerId)) {
-                    selectedPhotographer = photographers[i];
-                }
-            }
-            document.getElementById("formTitle").textContent = `Contactez ${selectedPhotographer.name}`;
-            openModalBtn.addEventListener("click", openModal);
-            modalCloseBtn.addEventListener("click", closeModal);
-        });
-}
+openModalBtn.addEventListener("click", openModal);
+modalCloseBtn.addEventListener("click", closeModal);
 // Attachez les gestionnaires d'événements aux boutons
 function openModal() {
     mainWrapper.setAttribute("aria-hidden", "true");
@@ -66,8 +48,6 @@ document.addEventListener("keydown", (event) => {
         closeModal();
     }
 });
-
-let form = document.querySelector("form");
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();

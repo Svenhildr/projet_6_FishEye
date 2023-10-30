@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="Fr">
     <head>
         <link href="css/style.css" rel="stylesheet" type="text/css" />
         <link href="css/photographer.css" rel="stylesheet" type="text/css" />
@@ -27,13 +27,19 @@
                 <!-- <button class="contact_button" onclick="openModal()">Contactez-moi</button> -->
             </div>
             <div class="photograph-container">
-                <div class="sorting_content">
-                    <label for="sorting-select">Trier par</label>
+                <div class="select_container active">
+                    Trier par
+                    <div class="select_box">Popularité <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="select_content">
+                        <!-- / tenter de faire une liste pour le dropdown -->
+
+                        <!-- <label for="sorting-select">Trier par</label>
                     <select name="sorting-select" id="sort">
                         <option value="option_likes">Popularité</option>
                         <option value="option_date">Date</option>
                         <option value="option_title">Titre</option>
-                    </select>
+                    </select> -->
+                    </div>
                 </div>
                 <div class="photo_container">
                     <!-- <div class="photo_content">
@@ -80,7 +86,7 @@
             </div>
         </div>
         <script src="/scripts/templates/media.js"></script>
-        <script src="/scripts/utils/contactForm.js"></script>
         <script type="module" src="/scripts/pages/photographer.js"></script>
+        <script src="/scripts/utils/contactForm.js"></script>
     </body>
 </html>

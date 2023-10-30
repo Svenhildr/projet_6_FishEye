@@ -35,14 +35,14 @@ function closeModal() {
     openModalBtn.focus();
 }
 
-// Ajoutez également une gestion de la fermeture de la modal lorsque vous cliquez en dehors de celle-ci
+// gestion de la fermeture de la modal lorsque clic en dehors de celle-ci
 document.addEventListener("click", (event) => {
     if (event.target === modal) {
         closeModal();
     }
 });
 
-// Gérez également la fermeture de la modal en appuyant sur la touche Échap
+// gestion de la fermeture de la modal en appuyant sur la touche Échap
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         closeModal();
@@ -56,6 +56,8 @@ form.addEventListener("submit", (event) => {
         console.log("Prénom: " + prenomInput.value);
         console.log("Nom: " + nomInput.value);
         console.log("Email: " + emailInput.value);
+        console.log("Email: " + messageInput.value);
+        closeModal();
     } else {
         return console.log("erreur de l'envoi du formulaire");
     }

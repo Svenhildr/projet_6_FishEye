@@ -62,7 +62,7 @@ const selectMenu = document.querySelector(".select_menu");
 const firstMenuBtn = selectMenu.querySelector(".menu_btn");
 const menuBtns = document.querySelectorAll(".menu_btn");
 const firstIcon = firstMenuBtn.querySelector("i");
-
+console.log(menuBtns);
 let menuOpen = false;
 
 // Gestionnaire d'événement pour le chevron vers le bas
@@ -73,9 +73,7 @@ dropdownIconDown.addEventListener("click", function () {
 });
 
 dropdownIconUp.addEventListener("click", function () {
-    selectBox.style.display = "flex";
-    selectMenu.style.display = "none";
-    menuOpen = false;
+    menuClose();
 });
 
 // event boutons du menu
@@ -84,16 +82,17 @@ menuBtns.forEach(function (btn) {
         const text = btn.textContent;
         selectBox.querySelector("span").textContent = text;
         console.log(selectBox.querySelector("span"), text);
-        selectBox.style.display = "flex";
-        selectMenu.style.display = "none";
-        menuOpen = false;
-        /*        const firstButtonText = firstMenuBtn.textContent;
-        firstMenuBtn.textContent = text;
-        firstMenuBtn.appendChild(firstIcon);
-        btn.textContent = firstButtonText; */
+        menuClose();
     });
 });
 // });
+
+function menuClose() {
+    const selectBox = document.querySelector(".select_box");
+    selectBox.style.display = "flex";
+    selectMenu.style.display = "none";
+    menuOpen = false;
+}
 
 /* const select = document.getElementById("sort");
 select.addEventListener("change", function () {

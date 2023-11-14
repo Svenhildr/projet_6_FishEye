@@ -41,13 +41,13 @@
             </div>
             <div class="photo_container">
                 <!-- <div class="photo_content">
-                        <img class="card_photo" src="" alt="" /> 
+                        <img class="card_photo media_elt" src="" alt="" /> 
                             <div class="photo_info">
                             <p class="photo_title"></p>
                             <span class="photo_likes"></span> 
                             <i class="fa-sharp fa-solid fa-heart heart-full"></i>
                             </div> 
-                    </div>-->
+                    </div> -->
             </div>
             <div class="likes_container">
                 <span id="total_likes"></span>
@@ -83,9 +83,17 @@
             </div>
         </div>
 
+        <div id="lightbox_container">
+            <img class="lightbox_photo" src="" alt="" />
+            <img class="lightbox_close" src="assets/icons/close.svg" />
+            <i id="dropdown-icon-right" class="fa-solid fa-chevron-right"></i>
+            <i id="dropdown-icon-left" class="fa-solid fa-chevron-left"></i>
+            <p class="photo_title"></p>
+        </div>
+
         <!-- <script src="/scripts/templates/sortList.js"></script> -->
-        <!-- <script src="/scripts/utils/lightbox.js"></script> -->
         <script type="module" src="/scripts/pages/photographer.js"></script>
         <script src="/scripts/utils/contactForm.js"></script>
+        <!-- <script type="module" src="/scripts/utils/lightbox.js"></script> -->
     </body>
 </html>

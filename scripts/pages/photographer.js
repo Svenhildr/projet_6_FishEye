@@ -1,10 +1,46 @@
 const url = new URL(window.location.href);
 const photographerId = url.searchParams.get("id");
+const dropdownIconDown = document.getElementById("dropdown-icon-down");
+const dropdownIconUp = document.getElementById("dropdown-icon-up");
+const selectBox = document.querySelector(".select_box");
+const selectMenu = document.querySelector(".select_menu");
+const firstMenuBtn = selectMenu.querySelector(".menu_btn");
+const menuBtns = document.querySelectorAll(".menu_btn");
+const firstIcon = firstMenuBtn.querySelector("i");
 
 import mediaCardTemplate from "../templates/cardPhotographs.js";
 import photographerTemplate from "../templates/photographer.js";
+import lightbox from "../utils/lightbox.js";
 
-await fetch("data/photographers.json")
+try {
+    const res = await fetch("data/photographers.json");
+    const datas = await res.json();
+    const { photographers, media } = datas;
+    //Filtre pour récuperer le bon photogrpaheet les bons medias
+    const selectedPhotographer = photographers.find((photographe) => photographe.id === parseInt(photographerId));
+
+    // Récupere les media du photographe selectionné
+    const mediasPhotographer = media.filter((media) => media.photographerId === parseInt(photographerId));
+
+    let selectElt = document.querySelector(".select_content");
+    displayInfoPhotographer(selectedPhotographer);
+    let photoContainer = document.querySelector(".photo_container");
+
+    //boucle de création des cartes média
+    for (const media of mediasPhotographer) {
+        const mediaCardObject = mediaCardTemplate(media);
+        const cardContent = mediaCardObject.createCard();
+        photoContainer.appendChild(cardContent);
+    }
+
+    lightbox(datas);
+    console.log("Datas:", datas);
+} catch (error) {
+    console.log(error);
+}
+
+/* await fetch("data/photographers.json")
+
     .then((response) => {
         if (!response.ok) {
             throw new Error("Erreur lors du chargement du fichier JSON.");
@@ -26,14 +62,13 @@ await fetch("data/photographers.json")
         //boucle de création des cartes média
         for (const media of mediasPhotographer) {
             const mediaCardObject = mediaCardTemplate(media);
-            // console.log(mediaCardObject);
             const cardContent = mediaCardObject.createCard();
             photoContainer.appendChild(cardContent);
         }
     })
     .catch((error) => {
         console.error(error, "catch");
-    });
+    }); */
 
 function displayInfoPhotographer(selectedPhotographer) {
     const titleForm = document.getElementById("formTitle");
@@ -55,13 +90,6 @@ function displayInfoPhotographer(selectedPhotographer) {
 }
 
 // document.addEventListener("DOMContentLoaded", function () {
-const dropdownIconDown = document.getElementById("dropdown-icon-down");
-const dropdownIconUp = document.getElementById("dropdown-icon-up");
-const selectBox = document.querySelector(".select_box");
-const selectMenu = document.querySelector(".select_menu");
-const firstMenuBtn = selectMenu.querySelector(".menu_btn");
-const menuBtns = document.querySelectorAll(".menu_btn");
-const firstIcon = firstMenuBtn.querySelector("i");
 console.log(menuBtns);
 let menuOpen = false;
 

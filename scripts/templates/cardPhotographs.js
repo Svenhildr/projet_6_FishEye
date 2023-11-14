@@ -1,19 +1,25 @@
+// import { openLightbox } from "../utils/lightbox.js";
 export default function mediaCardTemplate(data) {
     const { photographerId, title, likes, video, image } = data;
-
+    // let openLightbox;
+    // let openLightboxMedias;
     function imageOrVideo(video, photographerId, title, image) {
         let mediaElt;
         if (video) {
             mediaElt = document.createElement("video");
             mediaElt.src = `assets/photographers/${photographerId}/${video}`;
-            mediaElt.classList.add("card_video");
+            mediaElt.classList.add("card_video", "media_elt");
             mediaElt.setAttribute("alt", `titre : ${title}`);
+            mediaElt.setAttribute("data-media-id", photographerId); // Ajoutez un identifiant unique
+            // mediaElt.addEventListener("click", openLightbox);
             // mediaElt.setAttribute("controls", "video/mp4");
         } else {
             mediaElt = document.createElement("img");
             mediaElt.src = `assets/photographers/${photographerId}/${image}`;
-            mediaElt.classList.add("card_image");
+            mediaElt.classList.add("card_image", "media_elt");
             mediaElt.setAttribute("alt", `titre : ${title}`);
+            mediaElt.setAttribute("data-media-id", photographerId); // Ajoutez un identifiant unique
+            // mediaElt.addEventListener("click", openLightbox);
         }
         return mediaElt;
     }
@@ -37,11 +43,12 @@ export default function mediaCardTemplate(data) {
         const likesElt = document.createElement("span");
         likesElt.classList.add("likes_media");
         likesElt.textContent = ` ${likes} `;
+        likesElt.innerHTML += '<i class="fa-sharp fa-solid fa-heart heart-full"></i>';
         infoDiv.appendChild(likesElt);
 
-        const heartIcon = document.createElement("i");
+        /*         const heartIcon = document.createElement("i");
         heartIcon.classList.add("fa-sharp", "fa-solid", "fa-heart", "heart-full");
-        likesElt.appendChild(heartIcon);
+        likesElt.appendChild(heartIcon); */
 
         return cardContent;
     }

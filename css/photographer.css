@@ -143,6 +143,7 @@ form input {
     gap: 10px;
     margin: 0 100px;
     width: auto;
+    position: relative;
 }
 .card_content {
     display: flex;
@@ -241,4 +242,16 @@ form input {
 
 .close_icon_lightbox {
     color: #db8876;
+}
+
+#lightbox_container {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}
+
+#lightbox_container > img,
+#lightbox_container > video {
+    width: 500px;
 }

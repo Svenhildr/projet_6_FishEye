@@ -33,8 +33,9 @@ try {
         photoContainer.appendChild(cardContent);
     }
 
-    lightbox(datas);
-    console.log("Datas:", datas);
+    //appel de la fonction lightbox en prenant en compte le filtre mediasPhotographer
+    lightbox({ photographers, media: mediasPhotographer });
+    // console.log("Datas:", datas);
 } catch (error) {
     console.log(error);
 }
@@ -90,7 +91,6 @@ function displayInfoPhotographer(selectedPhotographer) {
 }
 
 // document.addEventListener("DOMContentLoaded", function () {
-console.log(menuBtns);
 let menuOpen = false;
 
 // Gestionnaire d'événement pour le chevron vers le bas

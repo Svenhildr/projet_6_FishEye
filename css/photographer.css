@@ -249,9 +249,28 @@ form input {
     position: absolute;
     top: 50%;
     left: 40%;
+    z-index: 0;
 }
 
 #lightbox_container > img,
 #lightbox_container > video {
     width: 500px;
+}
+
+.icon-nav {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 90%;
+}
+
+.chevron-nav {
+    z-index: 999;
+}
+
+.chevron-nav {
+    font-size: 50px;
+    color: #901c1c;
 }

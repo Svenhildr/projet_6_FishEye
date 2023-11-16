@@ -1,49 +1,88 @@
 // import imageOrVideo from "../templates/cardPhotographs.js";
 
-const main = document.getElementById("main");
-const body = document.body;
+// const main = document.getElementById("main");
+// const body = document.body;
 // const lightboxModal = document.getElementById("lightbox_container");
-const lightboxCloseBtn = document.querySelector(".lightbox_close");
-const lightboxLeftBtn = document.getElementById("dropdown-icon-left");
-const lightboxRightBtn = document.getElementById("dropdown-icon-right");
-const lightboxTitle = document.querySelector(".photo_title");
+
+// const nextBtn = document.getElementById("dropdown-icon-left");
+// const previousBtn = document.getElementById("dropdown-icon-right");
 
 export default function lightbox(data) {
+    const lightboxCloseBtn = document.querySelector(".lightbox_close");
+    const lightboxTitle = document.querySelector(".photo_title");
     const openLightboxMedias = document.querySelectorAll(".media_elt");
+    const btnsContainer = document.querySelector(".icon-nav");
+    const lightboxModal = document.getElementById("lightbox_container");
 
-    openLightboxMedias.forEach((media) => {
-        media.addEventListener("click", () => {
+    let currentIndex = -1;
+
+    function renderModal() {
+        let nextBtn = document.createElement("i");
+        nextBtn.id = "dropdown-icon-left";
+        nextBtn.classList.add("fas", "fa-chevron-left", "chevron-nav");
+        nextBtn.style.display = "block";
+        btnsContainer.appendChild(nextBtn);
+
+        let previousBtn = document.createElement("i");
+        previousBtn.id = "dropdown-icon-right";
+        previousBtn.classList.add("fas", "fa-chevron-right", "chevron-nav");
+        previousBtn.style.display = "block";
+        btnsContainer.appendChild(previousBtn);
+
+        previousBtn.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % data.media.length;
+            displayMediaInModal(data.media[currentIndex]);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + data.media.length) % data.media.length;
+            displayMediaInModal(data.media[currentIndex]);
+        });
+
+        // Systeme de close modal
+    }
+    renderModal();
+
+    // Ouverture de la modal au click sur un media
+    openLightboxMedias.forEach((media, index) => {
+        media.addEventListener("click", (e) => {
             // Utilisez les propriétés de l'élément média sélectionné
-            const selectedMedia = data.media.filter((elt) => media.alt === `titre : ${elt.title}`);
-            displayMediaInModal(selectedMedia[0]);
+            // console.log(e.target);
+            // const selectedMedia = data.media.filter((elt) => media.getAttribute("alt") === `titre : ${elt.title}`);
+
+            // currentIndex = data.media.indexOf(selectedMedia[0]);
+            currentIndex = index;
+            displayMediaInModal(data.media[currentIndex]);
+            openModal();
         });
     });
 
     function displayMediaInModal(clickedMedia) {
-        const mediaType = clickedMedia.video ? "video" : "img";
-        const lightboxModal = document.getElementById("lightbox_container");
-
-        let lightboxPhoto;
-
-        if (mediaType === "img") {
-            lightboxPhoto = document.createElement("img");
-            lightboxPhoto.src = `assets/photographers/${clickedMedia.photographerId}/${clickedMedia.image}`;
-            lightboxPhoto.alt = `titre : ${clickedMedia.title}`;
-            lightboxModal.style.display = "flex";
-        } else if (mediaType === "video") {
-            lightboxPhoto = document.createElement("video");
-            lightboxPhoto.src = `assets/photographers/${clickedMedia.photographerId}/${clickedMedia.video}`;
-            lightboxPhoto.alt = `titre : ${clickedMedia.title}`;
-            lightboxModal.style.display = "flex";
-            lightboxPhoto.autoplay = false;
-            lightboxPhoto.controls = true;
+        const oldMediaLightbox = lightboxModal.querySelector(".mediaLightBox");
+        if (oldMediaLightbox) {
+            oldMediaLightbox.remove();
         }
 
-        lightboxModal.innerHTML = "";
+        let lightboxMedia;
+        if (!clickedMedia.video) {
+            lightboxMedia = document.createElement("img");
+            lightboxMedia.src = `assets/photographers/${clickedMedia.photographerId}/${clickedMedia.image}`;
+        } else {
+            lightboxMedia = document.createElement("video");
+            lightboxMedia.src = `assets/photographers/${clickedMedia.photographerId}/${clickedMedia.video}`;
+            lightboxMedia.setAttribute("controls", "video/mp4");
+            lightboxMedia.autoplay = false;
+            lightboxMedia.controls = true;
+        }
+        lightboxMedia.classList.add("mediaLightBox");
+        lightboxMedia.alt = `titre : ${clickedMedia.title}`;
 
-        lightboxModal.appendChild(lightboxPhoto);
-
+        lightboxModal.appendChild(lightboxMedia);
         lightboxTitle.textContent = clickedMedia.title;
+    }
+
+    function openModal() {
+        lightboxModal.style.display = "flex";
     }
 }
 

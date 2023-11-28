@@ -1,27 +1,30 @@
-// import imageOrVideo from "../templates/cardPhotographs.js";
-
-// const main = document.getElementById("main");
-// const body = document.body;
-// const lightboxModal = document.getElementById("lightbox_container");
-
-// const nextBtn = document.getElementById("dropdown-icon-left");
-// const previousBtn = document.getElementById("dropdown-icon-right");
-
 export default function lightbox(data) {
-    const lightboxCloseBtn = document.querySelector(".lightbox_close");
     const lightboxTitle = document.querySelector(".photo_title");
     const openLightboxMedias = document.querySelectorAll(".media_elt");
-    const btnsContainer = document.querySelector(".icon-nav");
     const lightboxModal = document.getElementById("lightbox_container");
 
     let currentIndex = -1;
 
     function renderModal() {
+        const btnsContainer = document.querySelector(".icon-nav");
+        lightboxModal.appendChild(btnsContainer);
+
+        const navBtns = document.createElement("div");
+        btnsContainer.appendChild(navBtns);
+
+        let lightboxCloseBtn = document.createElement("img");
+        lightboxCloseBtn.src = `assets/icons/close.svg`;
+        lightboxCloseBtn.classList.add("close_btn");
+        lightboxCloseBtn.style.display = "block";
+        btnsContainer.appendChild(lightboxCloseBtn);
+
         let nextBtn = document.createElement("i");
         nextBtn.id = "dropdown-icon-left";
         nextBtn.classList.add("fas", "fa-chevron-left", "chevron-nav");
         nextBtn.style.display = "block";
         btnsContainer.appendChild(nextBtn);
+
+        // displayMediaInModal(clickedMedia);
 
         let previousBtn = document.createElement("i");
         previousBtn.id = "dropdown-icon-right";
@@ -37,6 +40,9 @@ export default function lightbox(data) {
         nextBtn.addEventListener("click", () => {
             currentIndex = (currentIndex - 1 + data.media.length) % data.media.length;
             displayMediaInModal(data.media[currentIndex]);
+        });
+        lightboxCloseBtn.addEventListener("click", () => {
+            closeLightbox();
         });
 
         // Systeme de close modal
@@ -83,6 +89,9 @@ export default function lightbox(data) {
 
     function openModal() {
         lightboxModal.style.display = "flex";
+    }
+    function closeLightbox() {
+        lightboxModal.style.display = "none";
     }
 }
 

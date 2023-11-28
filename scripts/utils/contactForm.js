@@ -14,6 +14,7 @@ const nameRegex = /^[a-zA-Z]{2,}$/;
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 closeModal();
+//faire display none
 
 openModalBtn.addEventListener("click", openModal);
 modalCloseBtn.addEventListener("click", closeModal);

@@ -8,11 +8,13 @@ const firstMenuBtn = selectMenu.querySelector(".menu_btn");
 const menuBtns = document.querySelectorAll(".menu_btn");
 const firstIcon = firstMenuBtn.querySelector("i");
 const sortBtn = document.querySelector(".menu_btn");
+const likesContainer = document.querySelector(".likes_container");
 
 import mediaCardTemplate from "../templates/cardPhotographs.js";
 import photographerTemplate from "../templates/photographer.js";
 import lightbox from "../utils/lightbox.js";
 import sortMedia from "../templates/sortList.js";
+import calculateTotalLikes from "../templates/Likes.js";
 
 let mediasPhotographer;
 let photoContainer = document.querySelector(".photo_container");
@@ -30,16 +32,13 @@ try {
 
     let selectElt = document.querySelector(".select_content");
     displayInfoPhotographer(selectedPhotographer);
-    // console.log(mediasPhotographer);
     //boucle de création des cartes média
-    for (const media of mediasPhotographer) {
-        const mediaCardObject = mediaCardTemplate(media);
-        const cardContent = mediaCardObject.createCard();
-        photoContainer.appendChild(cardContent);
-    }
+    sortMedia("Popularité", mediasPhotographer);
+    displayCards(mediasPhotographer);
+    displayTotalAndPrice(selectedPhotographer, mediasPhotographer);
     //appel de la fonction lightbox en prenant en compte le filtre mediasPhotographer
     lightbox({ photographers, media: mediasPhotographer });
-    filterBtns(mediasPhotographer);
+    filterBtns(mediasPhotographer, photographers);
 } catch (error) {
     console.log(error);
 }
@@ -78,32 +77,32 @@ dropdownIconUp.addEventListener("click", function () {
     menuClose();
 });
 
+function displayCards(medias) {
+    for (const media of medias) {
+        const mediaCardObject = mediaCardTemplate(media);
+        const cardContent = mediaCardObject.createCard();
+        photoContainer.appendChild(cardContent);
+    }
+}
+
 // event boutons du menu
-function filterBtns(medias) {
+function filterBtns(medias, photographers) {
     menuBtns.forEach(function (btn) {
         btn.addEventListener("click", function () {
             const text = btn.textContent;
             selectBox.querySelector("span").textContent = text;
-            // console.log(selectBox.querySelector("span"), text);
-            // console.log(medias);
-
-            removeAllChildNodes(photoContainer);
-            // console.log(medias);
+            photoContainer.innerHTML = "";
             const sortedMedia = sortMedia(text, medias);
-            for (const media of sortedMedia) {
+            /* for (const media of sortedMedia) {
                 const mediaCardObject = mediaCardTemplate(media);
                 const cardContent = mediaCardObject.createCard();
                 photoContainer.appendChild(cardContent);
-            }
+            } */
+            displayCards(medias);
             menuClose();
+            lightbox({ photographers, media: sortedMedia });
         });
     });
-}
-
-function removeAllChildNodes(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
 }
 
 function menuClose() {
@@ -111,4 +110,15 @@ function menuClose() {
     selectBox.style.display = "flex";
     selectMenu.style.display = "none";
     menuOpen = false;
+}
+
+function displayTotalAndPrice(selectedPhotographer, mediasPhotographer) {
+    const totalLikesElt = document.getElementById("total_likes");
+    const pricePerDay = document.getElementById("price");
+    const totalLikes = calculateTotalLikes(selectedPhotographer.id, mediasPhotographer);
+    totalLikesElt.textContent = ` ${totalLikes}  `;
+    totalLikesElt.innerHTML += ' <i class="fa-sharp fa-solid fa-heart heart-full"></i>';
+    pricePerDay.innerHTML += `   ${selectedPhotographer.price}€ / jour`;
+    likesContainer.appendChild(totalLikesElt);
+    likesContainer.appendChild(pricePerDay);
 }

@@ -7,7 +7,8 @@ export default function lightbox(data) {
 
     function renderModal() {
         const btnsContainer = document.querySelector(".icon-nav");
-        lightboxModal.appendChild(btnsContainer);
+        btnsContainer.innerHTML = "";
+        // lightboxModal.appendChild(btnsContainer);
 
         const navBtns = document.createElement("div");
         btnsContainer.appendChild(navBtns);

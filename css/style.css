@@ -73,8 +73,7 @@ article {
     cursor: default;
 }
 
-h2,
-span {
+h2 {
     display: flex;
     justify-content: center;
 }

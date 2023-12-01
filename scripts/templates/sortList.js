@@ -18,11 +18,11 @@ function sortByPopularity(mediaList) {
 
 // Factory function pour trier par date
 function sortByDate(mediaList) {
-    if (!mediaList) {
+    /*     if (!mediaList) {
         console.error("Media list is undefined or null.");
         return [];
     }
-
+ */
     // Filter out entries without a valid date property
     const validMediaList = mediaList.filter((media) => media && media.date);
 

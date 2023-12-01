@@ -179,6 +179,24 @@ form input {
     font-weight: 600;
     padding: 0 5px;
 }
+.likes_container {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 25px;
+    color: black;
+    background-color: #db8876;
+    font-weight: 600;
+    font-size: larger;
+    width: 200px;
+    border-radius: 10px 10px 0 0;
+    position: fixed;
+    bottom: 0;
+    right: 10%;
+    /* height: 50px; */
+}
+/* .total_likes > i {
+    margin-right: 10px;
+} */
 
 .select_container {
     display: flex;
@@ -239,6 +257,12 @@ form input {
     height: 50px;
     cursor: pointer;
     outline: none;
+}
+.menu_btn:hover {
+    background-color: #db8876;
+    width: 100%;
+    margin: 0;
+    padding: 0 11px;
 }
 
 .close_icon_lightbox {

@@ -44,11 +44,6 @@ h1 {
     align-items: center;
     flex-direction: column; */
 
-*/ .photographer_section article h2 {
-    color: #d3573c;
-    font-size: 36px;
-}
-
 .card_container {
     display: flex;
     flex-direction: column;
@@ -78,30 +73,28 @@ article {
     cursor: default;
 }
 
-h2,
-span {
+h2 {
     display: flex;
     justify-content: center;
 }
 
-h2 {
+article > h2 {
     color: #d3573c;
-    font-size: 2.25rem;
-    margin-bottom: 0;
+    font-size: 36px;
 }
 .card_city {
-    font-size: 0.813rem;
+    font-size: 0.875rem;
     color: #901c1c;
 }
 
 .card_quote {
-    font-size: 0.625rem;
-    color: black;
+    font-size: 0.75rem;
+    color: #525252;
     margin: 5px 0 3px 0;
 }
 
 .card_price {
-    font-size: 0.563rem;
+    font-size: 0.688rem;
     color: #757575;
 }
 

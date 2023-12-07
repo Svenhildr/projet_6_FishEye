@@ -173,7 +173,7 @@ form input {
 }
 .title_media,
 .likes_media,
-.likes_media > i,
+.like_btn,
 .photo_title {
     color: #901c1c;
     font-weight: 600;
@@ -192,11 +192,9 @@ form input {
     position: fixed;
     bottom: 0;
     right: 10%;
+    z-index: 999;
     /* height: 50px; */
 }
-/* .total_likes > i {
-    margin-right: 10px;
-} */
 
 .select_container {
     display: flex;
@@ -209,11 +207,6 @@ form input {
     margin-right: 20px;
 }
 
-/* .select_container::after i {
-    transform: rotate(0.5turn);
-    transition: transform 0.5s ease-in-out;
-}
- */
 .select_box {
     display: flex;
     align-items: center;
@@ -236,7 +229,7 @@ form input {
     width: 170px;
     border-radius: 5px 5px;
     background-color: #901c1c;
-    z-index: 999;
+    z-index: 99;
     position: absolute;
     top: 5px;
     left: 92px;
@@ -273,53 +266,63 @@ form input {
     display: none;
     flex-direction: column-reverse;
     position: fixed;
-    top: 15%;
+    /* position: relative; */
+    justify-content: center;
+    top: 7%;
     left: 25%;
     z-index: 0;
-    width: 1242px;
-    height: 900px;
+    width: 1000px;
+    height: 950px;
     padding-bottom: 50px;
+    background-color: white;
+    box-sizing: border-box;
+}
+#lightbox_container > .photo_title {
+    position: absolute;
+    bottom: 20px;
+    left: 98px;
     background-color: white;
 }
 
 .mediaLightBox {
-    min-width: 1050px;
-    max-width: 1050px;
-    height: 100%;
+    position: relative;
+    left: 10%;
+    top: 10px;
+    min-width: 800px;
+    max-width: 800px;
+    height: 95%;
     object-fit: cover;
 }
 
-/* #photo_title{
-    color: #901c1c;
-    font
-} */
-
-.icon-nav {
-    /*     display: flex;
-    justify-content: space-between;
-    /* position: fixed; 
-    top: 50%;
-    left: 5%;
-    width: 90%; */
+#lightbox_container > .icon-nav {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    /* align-items: center; */
     position: absolute;
-    top: 10px; /* Ajustez la valeur selon votre besoin */
-    right: 10px; /* Ajustez la valeur selon votre besoin */
+    /* top: 45%; */
+    /* right: 0; */
+    width: 100%;
     z-index: 2;
 }
 
 .chevron-nav {
-    z-index: 999;
-}
-
-.chevron-nav {
     font-size: 50px;
+    z-index: 999;
+    /* display: flex; */
+    /* justify-content: space-between; */
     color: #901c1c;
+}
+#nav-icon-left {
+    padding-left: 30px;
+}
+#nav-icon-right {
+    padding-right: 30px;
 }
 
 .close_btn {
     width: 42px;
+    position: absolute;
+    top: 30px;
+    right: 28px;
     /* color: #901c1c; */
 }

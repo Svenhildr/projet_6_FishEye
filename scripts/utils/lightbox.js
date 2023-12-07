@@ -10,17 +10,17 @@ export default function lightbox(data) {
         btnsContainer.innerHTML = "";
         // lightboxModal.appendChild(btnsContainer);
 
-        const navBtns = document.createElement("div");
-        btnsContainer.appendChild(navBtns);
+        /*         const navBtns = document.createElement("div");
+        btnsContainer.appendChild(navBtns) */
 
         let lightboxCloseBtn = document.createElement("img");
         lightboxCloseBtn.src = `assets/icons/close.svg`;
         lightboxCloseBtn.classList.add("close_btn");
-        lightboxCloseBtn.style.display = "block";
-        btnsContainer.appendChild(lightboxCloseBtn);
+        lightboxCloseBtn.style.display = "flex";
+        lightboxModal.appendChild(lightboxCloseBtn);
 
         let nextBtn = document.createElement("i");
-        nextBtn.id = "dropdown-icon-left";
+        nextBtn.id = "nav-icon-left";
         nextBtn.classList.add("fas", "fa-chevron-left", "chevron-nav");
         nextBtn.style.display = "block";
         btnsContainer.appendChild(nextBtn);
@@ -28,7 +28,7 @@ export default function lightbox(data) {
         // displayMediaInModal(clickedMedia);
 
         let previousBtn = document.createElement("i");
-        previousBtn.id = "dropdown-icon-right";
+        previousBtn.id = "nav-icon-right";
         previousBtn.classList.add("fas", "fa-chevron-right", "chevron-nav");
         previousBtn.style.display = "block";
         btnsContainer.appendChild(previousBtn);

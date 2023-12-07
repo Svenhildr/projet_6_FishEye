@@ -9,6 +9,9 @@ const menuBtns = document.querySelectorAll(".menu_btn");
 const firstIcon = firstMenuBtn.querySelector("i");
 const sortBtn = document.querySelector(".menu_btn");
 const likesContainer = document.querySelector(".likes_container");
+const likeBtns = document.querySelectorAll(".like_btn");
+// console.log("Nombre de boutons de like :", likeBtns.length);
+let photoLikes = document.querySelector(".likes_media");
 
 import mediaCardTemplate from "../templates/cardPhotographs.js";
 import photographerTemplate from "../templates/photographer.js";
@@ -17,6 +20,7 @@ import sortMedia from "../templates/sortList.js";
 import calculateTotalLikes from "../templates/Likes.js";
 
 let mediasPhotographer;
+let photographers;
 let photoContainer = document.querySelector(".photo_container");
 
 try {
@@ -35,10 +39,13 @@ try {
     //boucle de création des cartes média
     sortMedia("Popularité", mediasPhotographer);
     displayCards(mediasPhotographer);
+    displayLikeAdd({ photographers, media: mediasPhotographer });
+
     displayTotalAndPrice(selectedPhotographer, mediasPhotographer);
     //appel de la fonction lightbox en prenant en compte le filtre mediasPhotographer
     lightbox({ photographers, media: mediasPhotographer });
-    filterBtns(mediasPhotographer, photographers);
+    filterBtns(mediasPhotographer, media);
+    // displayLikeAdd({ photographers, media: mediasPhotographer });
 } catch (error) {
     console.log(error);
 }
@@ -93,14 +100,49 @@ function filterBtns(medias, photographers) {
             selectBox.querySelector("span").textContent = text;
             photoContainer.innerHTML = "";
             const sortedMedia = sortMedia(text, medias);
-            /* for (const media of sortedMedia) {
-                const mediaCardObject = mediaCardTemplate(media);
-                const cardContent = mediaCardObject.createCard();
-                photoContainer.appendChild(cardContent);
-            } */
-            displayCards(medias);
+            displayCards(sortedMedia);
             menuClose();
             lightbox({ photographers, media: sortedMedia });
+            calculateTotalLikes(photographers.id, medias);
+        });
+    });
+}
+
+function displayLikeAdd({ photographers, media: mediasPhotographer }) {
+    const likeBtns = document.querySelectorAll(".like_btn");
+    let totalLikes = document.getElementById("total_likes");
+    // const photoLikes = document.querySelector(".likes_media");
+    // console.log(photoLikes);
+
+    likeBtns.forEach(function (button) {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            //limite a 1 like par photo si 2 clicks le like est retiré
+            let selectedLike = event.target.closest("div").querySelector("span");
+            // console.log(event.target.closest("div").querySelector("span"));
+
+            if (button.classList.contains("liked")) {
+                console.log("c'est retiré");
+                button.classList.remove("liked");
+                const likesValue = parseInt(selectedLike.textContent);
+                const updatedLikesValue = likesValue - 1;
+                selectedLike.textContent = ` ${updatedLikesValue} `;
+
+                const totalLikeValue = parseInt(totalLikes.textContent);
+                const updatedTotalLikes = totalLikeValue - 1;
+                totalLikes.textContent = ` ${updatedTotalLikes} `;
+            } else {
+                console.log("c'est ajouté");
+                button.classList.add("liked");
+                const likesValue = parseInt(selectedLike.textContent);
+                const updatedLikesValue = likesValue + 1;
+                selectedLike.textContent = ` ${updatedLikesValue}  `;
+
+                const totalLikeValue = parseInt(totalLikes.textContent);
+                const updatedTotalLikes = totalLikeValue + 1;
+                totalLikes.textContent = ` ${updatedTotalLikes} `;
+            }
         });
     });
 }

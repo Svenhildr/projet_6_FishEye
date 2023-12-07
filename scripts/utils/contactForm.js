@@ -13,12 +13,12 @@ const messageInput = document.getElementById("input_message");
 const nameRegex = /^[a-zA-Z]{2,}$/;
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-closeModal();
-//faire display none
+modal.style.display = "none";
 
 openModalBtn.addEventListener("click", openModal);
 modalCloseBtn.addEventListener("click", closeModal);
-// Attachez les gestionnaires d'événements aux boutons
+
+//ouverture de modal
 function openModal() {
     mainWrapper.setAttribute("aria-hidden", "true");
     modal.setAttribute("aria-hidden", "false");

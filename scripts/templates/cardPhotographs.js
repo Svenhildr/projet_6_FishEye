@@ -40,15 +40,19 @@ export default function mediaCardTemplate(data) {
         titleElt.textContent = title;
         infoDiv.appendChild(titleElt);
 
+        const photoLikesContainer = document.createElement("div");
+        photoLikesContainer.classList.add("Photo_likes");
+        infoDiv.appendChild(photoLikesContainer);
+
         const likesElt = document.createElement("span");
         likesElt.classList.add("likes_media");
-        likesElt.textContent = ` ${likes} `;
-        likesElt.innerHTML += '<i class="fa-sharp fa-solid fa-heart heart-full"></i>';
-        infoDiv.appendChild(likesElt);
+        likesElt.textContent = ` ${likes}`;
+        // likesElt.innerHTML += '<i class="fa-sharp fa-solid fa-heart heart-full like_btn"></i>';
+        photoLikesContainer.appendChild(likesElt);
 
-        /*         const heartIcon = document.createElement("i");
-        heartIcon.classList.add("fa-sharp", "fa-solid", "fa-heart", "heart-full");
-        likesElt.appendChild(heartIcon); */
+        const heartIcon = document.createElement("i");
+        heartIcon.classList.add("fa-sharp", "fa-solid", "fa-heart", "heart-full", "like_btn");
+        photoLikesContainer.appendChild(heartIcon);
 
         return cardContent;
     }

@@ -203,8 +203,10 @@ form input {
     position: relative;
 }
 
-.select_container > h3 {
+.select_container > span {
     margin-right: 20px;
+    font-size: 1.17em;
+    font-weight: bold;
 }
 
 .select_box {
@@ -269,10 +271,10 @@ form input {
     /* position: relative; */
     justify-content: center;
     top: 7%;
-    left: 25%;
+    left: 12%;
     z-index: 0;
-    width: 1000px;
-    height: 950px;
+    width: 80%;
+    height: 90%;
     padding-bottom: 50px;
     background-color: white;
     box-sizing: border-box;
@@ -280,16 +282,15 @@ form input {
 #lightbox_container > .photo_title {
     position: absolute;
     bottom: 20px;
-    left: 98px;
+    left: 130px;
     background-color: white;
 }
 
 .mediaLightBox {
     position: relative;
-    left: 10%;
+    left: 130px;
     top: 10px;
-    min-width: 800px;
-    max-width: 800px;
+    width: 85%;
     height: 95%;
     object-fit: cover;
 }

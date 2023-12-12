@@ -28,7 +28,7 @@
             </div>
             <div class="photograph-container">
                 <div class="select_container">
-                    <h3>Trier par</h3>
+                    <span>Trier par</span>
 
                     <div class="select_box"><span>Popularité</span> <i id="dropdown-icon-down" class="fa-solid fa-chevron-down"></i></div>
                     <div class="select_menu">
@@ -63,20 +63,20 @@
                 </header>
                 <form>
                     <div>
-                        <label id="label_prenom" for="prenom">Prénom</label>
-                        <input type="text" name="prenom" id="input_prenom" aria-labelledby="prenom" aria-describedby="Prénom" placeholder="Entrez votre Prénom" />
+                        <label id="label_prenom" for="input_prenom">Prénom</label>
+                        <input type="text" name="prenom" id="input_prenom" aria-labelledby="label_prenom" aria-describedby="label_prenom" placeholder="Entrez votre Prénom" />
                         <div id="prenom_error"></div>
 
-                        <label id="label_nom" for="nom">Nom</label>
-                        <input type="text" name="nom" id="input_nom" aria-labelledby="nom" aria-describedby="Nom" placeholder="Entrez votre Nom" />
+                        <label id="label_nom" for="input_nom">Nom</label>
+                        <input type="text" name="nom" id="input_nom" aria-labelledby="label_nom" aria-describedby="label_nom" placeholder="Entrez votre Nom" />
                         <div id="nom_error"></div>
 
-                        <label id="label_email" for="email">Email</label>
-                        <input type="email" name="email" id="input_email" aria-labelledby="email" aria-describedby="Email" placeholder="Entrez votre adresse email" />
+                        <label id="label_email" for="input_email">Email</label>
+                        <input type="email" name="email" id="input_email" aria-labelledby="label_email" aria-describedby="label_email" placeholder="Entrez votre adresse email" />
                         <div id="email_error"></div>
 
-                        <label id="label_message" for="message">Votre message</label>
-                        <input name="message" id="input_message" aria-labelledby="message" aria-describedby="Message" placeholder="Entrez votre message" />
+                        <label id="label_message" for="input_message">Votre message</label>
+                        <input name="message" id="input_message" aria-labelledby="label_message" aria-describedby="label_message" placeholder="Entrez votre message" />
                     </div>
                     <button type="submit" class="contact_button">Envoyer</button>
                 </form>

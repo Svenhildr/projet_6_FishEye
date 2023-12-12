@@ -44,7 +44,7 @@ try {
     displayTotalAndPrice(selectedPhotographer, mediasPhotographer);
     //appel de la fonction lightbox en prenant en compte le filtre mediasPhotographer
     lightbox({ photographers, media: mediasPhotographer });
-    filterBtns(mediasPhotographer, media);
+    filterBtns(mediasPhotographer, media, selectedPhotographer);
     // displayLikeAdd({ photographers, media: mediasPhotographer });
 } catch (error) {
     console.log(error);
@@ -93,7 +93,7 @@ function displayCards(medias) {
 }
 
 // event boutons du menu
-function filterBtns(medias, photographers) {
+function filterBtns(medias, photographers, selectedPhotographer) {
     menuBtns.forEach(function (btn) {
         btn.addEventListener("click", function () {
             const text = btn.textContent;
@@ -103,7 +103,8 @@ function filterBtns(medias, photographers) {
             displayCards(sortedMedia);
             menuClose();
             lightbox({ photographers, media: sortedMedia });
-            calculateTotalLikes(photographers.id, medias);
+            let totalLikes = calculateTotalLikes(selectedPhotographer.id, sortedMedia);
+            updateTotal(totalLikes);
         });
     });
 }
@@ -123,7 +124,6 @@ function displayLikeAdd({ photographers, media: mediasPhotographer }) {
             // console.log(event.target.closest("div").querySelector("span"));
 
             if (button.classList.contains("liked")) {
-                console.log("c'est retiré");
                 button.classList.remove("liked");
                 const likesValue = parseInt(selectedLike.textContent);
                 const updatedLikesValue = likesValue - 1;
@@ -133,7 +133,6 @@ function displayLikeAdd({ photographers, media: mediasPhotographer }) {
                 const updatedTotalLikes = totalLikeValue - 1;
                 totalLikes.textContent = ` ${updatedTotalLikes} `;
             } else {
-                console.log("c'est ajouté");
                 button.classList.add("liked");
                 const likesValue = parseInt(selectedLike.textContent);
                 const updatedLikesValue = likesValue + 1;
@@ -155,12 +154,28 @@ function menuClose() {
 }
 
 function displayTotalAndPrice(selectedPhotographer, mediasPhotographer) {
-    const totalLikesElt = document.getElementById("total_likes");
+    let totalLikesElt = document.getElementById("total_likes");
     const pricePerDay = document.getElementById("price");
-    const totalLikes = calculateTotalLikes(selectedPhotographer.id, mediasPhotographer);
-    totalLikesElt.textContent = ` ${totalLikes}  `;
-    totalLikesElt.innerHTML += ' <i class="fa-sharp fa-solid fa-heart heart-full"></i>';
+
+    console.log(selectedPhotographer, mediasPhotographer);
+    let totalLikes = calculateTotalLikes(selectedPhotographer.id, mediasPhotographer);
+    totalLikesElt.textContent = ` ${totalLikes} `;
+
     pricePerDay.innerHTML += `   ${selectedPhotographer.price}€ / jour`;
-    likesContainer.appendChild(totalLikesElt);
+
+    const totalLikesContainer = document.createElement("div");
+    totalLikesContainer.classList.add("Photo_likes");
+    likesContainer.appendChild(totalLikesContainer);
+
+    const heartIcon = document.createElement("i");
+    heartIcon.classList.add("fa-sharp", "fa-solid", "fa-heart", "heart-full");
+
+    totalLikesContainer.appendChild(totalLikesElt);
+    totalLikesContainer.appendChild(heartIcon);
     likesContainer.appendChild(pricePerDay);
+}
+
+function updateTotal(totalLikes) {
+    let totalLikesElt = document.getElementById("total_likes");
+    totalLikesElt.textContent = ` ${totalLikes} `;
 }

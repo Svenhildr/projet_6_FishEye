@@ -17,6 +17,7 @@ export default function lightbox(data) {
         lightboxCloseBtn.src = `assets/icons/close.svg`;
         lightboxCloseBtn.classList.add("close_btn");
         lightboxCloseBtn.style.display = "flex";
+        lightboxCloseBtn.setAttribute("aria-label", "close button");
         lightboxModal.appendChild(lightboxCloseBtn);
 
         let nextBtn = document.createElement("i");
@@ -55,7 +56,7 @@ export default function lightbox(data) {
         media.addEventListener("click", (e) => {
             currentIndex = index;
             displayMediaInModal(data.media[currentIndex]);
-            openModal();
+            openLightbox();
         });
     });
 
@@ -69,10 +70,12 @@ export default function lightbox(data) {
         if (!clickedMedia.video) {
             lightboxMedia = document.createElement("img");
             lightboxMedia.src = `assets/photographers/${clickedMedia.photographerId}/${clickedMedia.image}`;
+            lightboxMedia.setAttribute("alt", ` ${clickedMedia.title}`);
         } else {
             lightboxMedia = document.createElement("video");
             lightboxMedia.src = `assets/photographers/${clickedMedia.photographerId}/${clickedMedia.video}`;
-            lightboxMedia.setAttribute("controls", "video/mp4");
+            lightboxMedia.setAttribute("type", "video/mp4");
+            lightboxMedia.setAttribute("aria-label", ` ${clickedMedia.title}`);
             lightboxMedia.autoplay = false;
             lightboxMedia.controls = true;
         }
@@ -83,7 +86,17 @@ export default function lightbox(data) {
         lightboxTitle.textContent = clickedMedia.title;
     }
 
-    function openModal() {
+    document.addEventListener("keydown", (event) => {
+        console.log("Key pressed:", event.key);
+        const lightboxModal = document.getElementById("lightbox_container");
+        const isLightboxOpen = (lightboxModal.style.display = "flex");
+
+        if (isLightboxOpen && event.key === "Escape") {
+            closeLightbox();
+        }
+    });
+
+    function openLightbox() {
         lightboxModal.style.display = "flex";
     }
     function closeLightbox() {

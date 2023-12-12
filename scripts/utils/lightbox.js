@@ -1,5 +1,6 @@
 export default function lightbox(data) {
     const lightboxTitle = document.querySelector(".photo_title");
+    const main = document.getElementById("main");
     const openLightboxMedias = document.querySelectorAll(".media_elt");
     const lightboxModal = document.getElementById("lightbox_container");
 
@@ -98,8 +99,14 @@ export default function lightbox(data) {
 
     function openLightbox() {
         lightboxModal.style.display = "flex";
+        lightboxModal.setAttribute("aria-hidden", "false");
+        main.setAttribute("aria-hidden", "true");
+        main.style.display = "none";
     }
     function closeLightbox() {
         lightboxModal.style.display = "none";
+        lightboxModal.setAttribute("aria-hidden", "true");
+        main.setAttribute("aria-hidden", "false");
+        main.style.display = "block";
     }
 }

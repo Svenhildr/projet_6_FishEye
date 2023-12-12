@@ -22,6 +22,8 @@ modalCloseBtn.setAttribute("aria-label", "close button");
 //ouverture de modal
 function openModal() {
     mainWrapper.setAttribute("aria-hidden", "true");
+    mainWrapper.style.display = "none";
+
     modal.setAttribute("aria-hidden", "false");
     body.classList.add("no-scroll");
     modal.style.display = "flex";
@@ -31,6 +33,7 @@ function openModal() {
 // Fonction pour fermer la modal
 function closeModal() {
     mainWrapper.setAttribute("aria-hidden", "false");
+    mainWrapper.style.display = "block";
     modal.setAttribute("aria-hidden", "true");
     body.classList.remove("no-scroll");
     modal.style.display = "none";

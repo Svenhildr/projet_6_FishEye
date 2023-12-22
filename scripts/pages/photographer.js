@@ -34,7 +34,7 @@ try {
     // Récupere les media du photographe selectionné
     const mediasPhotographer = media.filter((media) => media.photographerId === parseInt(photographerId));
 
-    let selectElt = document.querySelector(".select_content");
+    // let selectElt = document.querySelector(".select_content");
     displayInfoPhotographer(selectedPhotographer);
     //boucle de création des cartes média
     sortMedia("Popularité", mediasPhotographer);
@@ -84,6 +84,16 @@ dropdownIconUp.addEventListener("click", function () {
     menuClose();
 });
 
+dropdownIconDown.addEventListener("keydown", (event) => {
+    selectBox.style.display = "none";
+    selectMenu.style.display = "block";
+    menuOpen = true;
+
+    if (dropdownIconUp && event.key === "Escape") {
+        menuClose();
+    } else if (dropdownIconUp && event.key === "Enter") filterBtns(medias, photographers, selectedPhotographer);
+});
+
 function displayCards(medias) {
     for (const media of medias) {
         const mediaCardObject = mediaCardTemplate(media);
@@ -119,28 +129,20 @@ function displayLikeAdd({ photographers, media: mediasPhotographer }) {
         button.addEventListener("click", function (event) {
             event.preventDefault();
 
-            //limite a 1 like par photo si 2 clicks le like est retiré
+            //limite à 1 like par photo, si 2 clics, le like est retiré
             let selectedLike = event.target.closest("div").querySelector("span");
-            // console.log(event.target.closest("div").querySelector("span"));
 
-            if (button.classList.contains("liked")) {
-                button.classList.remove("liked");
-                const likesValue = parseInt(selectedLike.textContent);
-                const updatedLikesValue = likesValue - 1;
-                selectedLike.textContent = ` ${updatedLikesValue} `;
+            // Utilisez la fonction pour gérer la logique du like
+            toggleLike(button, selectedLike, totalLikes);
+        });
 
-                const totalLikeValue = parseInt(totalLikes.textContent);
-                const updatedTotalLikes = totalLikeValue - 1;
-                totalLikes.textContent = ` ${updatedTotalLikes} `;
-            } else {
-                button.classList.add("liked");
-                const likesValue = parseInt(selectedLike.textContent);
-                const updatedLikesValue = likesValue + 1;
-                selectedLike.textContent = ` ${updatedLikesValue}  `;
+        button.addEventListener("keydown", function (event) {
+            if (button && event.key === "Enter") {
+                //limite à 1 like par photo, si 2 clics, le like est retiré
+                let selectedLike = event.target.closest("div").querySelector("span");
 
-                const totalLikeValue = parseInt(totalLikes.textContent);
-                const updatedTotalLikes = totalLikeValue + 1;
-                totalLikes.textContent = ` ${updatedTotalLikes} `;
+                // Utilisez la fonction pour gérer la logique du like
+                toggleLike(button, selectedLike, totalLikes);
             }
         });
     });
@@ -178,4 +180,26 @@ function displayTotalAndPrice(selectedPhotographer, mediasPhotographer) {
 function updateTotal(totalLikes) {
     let totalLikesElt = document.getElementById("total_likes");
     totalLikesElt.textContent = ` ${totalLikes} `;
+}
+
+function toggleLike(button, selectedLike, totalLikes) {
+    if (button.classList.contains("liked")) {
+        button.classList.remove("liked");
+        const likesValue = parseInt(selectedLike.textContent);
+        const updatedLikesValue = likesValue - 1;
+        selectedLike.textContent = ` ${updatedLikesValue} `;
+
+        const totalLikeValue = parseInt(totalLikes.textContent);
+        const updatedTotalLikes = totalLikeValue - 1;
+        totalLikes.textContent = ` ${updatedTotalLikes} `;
+    } else {
+        button.classList.add("liked");
+        const likesValue = parseInt(selectedLike.textContent);
+        const updatedLikesValue = likesValue + 1;
+        selectedLike.textContent = ` ${updatedLikesValue}  `;
+
+        const totalLikeValue = parseInt(totalLikes.textContent);
+        const updatedTotalLikes = totalLikeValue + 1;
+        totalLikes.textContent = ` ${updatedTotalLikes} `;
+    }
 }

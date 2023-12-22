@@ -29,6 +29,7 @@ export default function mediaCardTemplate(data) {
         cardContent.classList.add("card_content");
 
         const mediaElt = imageOrVideo(video, photographerId, title, image);
+        mediaElt.tabIndex = 6;
         cardContent.appendChild(mediaElt);
 
         const infoDiv = document.createElement("div");
@@ -52,6 +53,7 @@ export default function mediaCardTemplate(data) {
 
         const heartIcon = document.createElement("i");
         heartIcon.classList.add("fa-sharp", "fa-solid", "fa-heart", "heart-full", "like_btn");
+        heartIcon.setAttribute("tabindex", 6);
         photoLikesContainer.appendChild(heartIcon);
 
         return cardContent;

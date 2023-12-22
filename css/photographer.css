@@ -247,12 +247,10 @@ form input {
     margin: 0 0 0 5px;
     color: white;
     border: none;
-    outline: none;
     background-color: #901c1c;
     width: 95%;
     height: 50px;
     cursor: pointer;
-    outline: none;
 }
 .menu_btn:hover {
     background-color: #db8876;
@@ -289,7 +287,7 @@ form input {
 
 .mediaLightBox {
     position: relative;
-    left: 130px;
+    left: 9%;
     top: 10px;
     width: 85%;
     height: 95%;
@@ -318,13 +316,13 @@ form input {
     padding-left: 30px;
 }
 #nav-icon-right {
-    padding-right: 30px;
+    padding-right: 6px;
 }
 
 .close_btn {
     width: 42px;
     position: absolute;
-    top: 30px;
-    right: 28px;
+    top: 5%;
+    right: 0%;
     /* color: #901c1c; */
 }

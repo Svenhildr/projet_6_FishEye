@@ -49,7 +49,8 @@ document.addEventListener("click", (event) => {
 
 // gestion de la fermeture de la modal en appuyant sur la touche Échap
 document.addEventListener("keydown", (event) => {
-    const isContactFormOpen = (modal.style.display = "flex");
+    // const isContactFormOpen = (modal.style.display = "flex");
+    const isContactFormOpen = modal.style.display === "flex" ? true : false;
 
     if (isContactFormOpen && event.key === "Escape") {
         closeModal();

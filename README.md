@@ -32,7 +32,7 @@ You recently joined Techasite as a junior developer, and your current project in
 - Use the provided examples of photos, videos, and JSON-formatted data to dynamically create photographer pages.
 - Zoe, a senior developer, recommended implementing the Factory Method pattern for handling photos and videos, she shared a valuable technical tip: use the Factory Method pattern to distinguish between photos and videos when dealing with FishEye's media content. This will enhance the creation process for these elements.
 
-## 💬 **Communication with Amanda  **
+## 💬 **Communication with Amanda**
 
 Amanda, the project manager, emphasized the importance of accessibility and requested a GitHub repository with completed code for review. Ensure that the prototype aligns with the approved designs and functions without errors in the console.
 

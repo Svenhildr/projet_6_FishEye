@@ -7,12 +7,15 @@
 .photograph-header {
     background-color: #fafafa;
     height: 300px;
-    margin: 0 100px;
+    width: 90%;
+    max-width: 1240px;
+    margin: 25px auto;
     display: flex;
     justify-content: space-around;
     align-content: center;
     align-items: center;
 }
+
 .photograph-header > .header_info {
     display: flex;
     flex-direction: column;
@@ -63,11 +66,6 @@
     width: 100%;
     position: relative;
     height: 24px;
-}
-
-.modal header img {
-    margin-top: 40px;
-    cursor: pointer;
 }
 
 .modal header h2 {
@@ -137,19 +135,28 @@ form input {
     margin-top: 25px;
 }
 
+.photograph-container {
+    margin: auto;
+    width: 90%;
+    max-width: 1240px;
+}
+
 .photo_container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 10px;
-    margin: 0 100px;
-    width: auto;
+    gap: 15px;
+    margin: auto;
+    width: 90%;
+    max-width: 1240px;
     position: relative;
 }
 .card_content {
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 33%;
+    margin: 0 7px;
+    max-width: 350px;
     height: 350px;
     cursor: pointer;
 }
@@ -192,15 +199,14 @@ form input {
     border-radius: 10px 10px 0 0;
     position: fixed;
     bottom: 0;
-    right: 10%;
+    right: 17%;
     z-index: 999;
-    /* height: 50px; */
 }
 
 .select_container {
     display: flex;
     align-items: baseline;
-    margin: 50px 0 30px 100px;
+    margin: 50px 0 30px 0;
     position: relative;
 }
 
@@ -247,6 +253,7 @@ form input {
     margin: 0 0 0 5px;
     color: white;
     border: none;
+    border-bottom: #db8876;
     background-color: #901c1c;
     width: 95%;
     height: 50px;
@@ -257,6 +264,7 @@ form input {
     width: 100%;
     margin: 0;
     padding: 0 11px;
+    border-radius: 5px 5px;
 }
 
 .close_icon_lightbox {
@@ -267,7 +275,6 @@ form input {
     display: none;
     flex-direction: column-reverse;
     position: fixed;
-    /* position: relative; */
     justify-content: center;
     top: 8%;
     left: 10%;
@@ -297,10 +304,7 @@ form input {
 #lightbox_container > .icon-nav {
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
     position: absolute;
-    /* top: 45%; */
-    /* right: 0; */
     width: 100%;
     z-index: 2;
 }
@@ -308,8 +312,6 @@ form input {
 .chevron-nav {
     font-size: 50px;
     z-index: 999;
-    /* display: flex; */
-    /* justify-content: space-between; */
     color: #901c1c;
 }
 #nav-icon-left {
@@ -324,5 +326,4 @@ form input {
     position: absolute;
     top: 5%;
     right: 0%;
-    /* color: #901c1c; */
 }

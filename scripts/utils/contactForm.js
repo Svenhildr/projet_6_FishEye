@@ -22,7 +22,7 @@ modalCloseBtn.setAttribute("aria-label", "close button");
 //ouverture de modal
 function openModal() {
     mainWrapper.setAttribute("aria-hidden", "true");
-    mainWrapper.style.display = "none";
+    // mainWrapper.style.display = "none";
 
     modal.setAttribute("aria-hidden", "false");
     body.classList.add("no-scroll");
@@ -49,7 +49,6 @@ document.addEventListener("click", (event) => {
 
 // gestion de la fermeture de la modal en appuyant sur la touche Échap
 document.addEventListener("keydown", (event) => {
-    // const isContactFormOpen = (modal.style.display = "flex");
     const isContactFormOpen = modal.style.display === "flex" ? true : false;
 
     if (isContactFormOpen && event.key === "Escape") {

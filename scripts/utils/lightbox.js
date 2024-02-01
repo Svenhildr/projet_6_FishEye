@@ -155,7 +155,7 @@ export default function lightbox(data) {
     const openLightboxMedias = document.querySelectorAll(".media_elt");
     const lightboxModal = document.getElementById("lightbox_container");
     const card = document.querySelector(".card_content");
-    console.log(card);
+    // console.log(card);
     let currentIndex = -1;
 
     function renderModal() {

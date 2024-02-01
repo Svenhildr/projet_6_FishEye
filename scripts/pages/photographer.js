@@ -115,6 +115,7 @@ function filterBtns(medias, photographers, selectedPhotographer) {
             lightbox({ photographers, media: sortedMedia });
             let totalLikes = calculateTotalLikes(selectedPhotographer.id, sortedMedia);
             updateTotal(totalLikes);
+            displayLikeAdd({ photographers, media: sortedMedia });
         });
     });
 }

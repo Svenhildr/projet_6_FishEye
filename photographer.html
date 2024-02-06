@@ -11,7 +11,7 @@
     </head>
     <body>
         <header>
-            <a href="index.html" aria-label="accéder à la page d'accueil" tabindex="1">
+            <a href="index.html" aria-label="accéder à la page d'accueil" tabindex="0">
                 <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
             </a>
         </header>
@@ -22,7 +22,7 @@
                     <span id="city"></span>
                     <p id="quote"></p>
                 </div>
-                <button class="contact_button" tabindex="2">Contactez-moi</button>
+                <button class="contact_button">Contactez-moi</button>
                 <img class="card_img" src="" alt="" id="portrait" />
                 <!-- <button class="contact_button" onclick="openModal()">Contactez-moi</button> -->
             </div>
@@ -30,12 +30,11 @@
                 <div class="select_container">
                     <span>Trier par</span>
 
-                    <div class="select_box"><span>Popularité</span> <i id="dropdown-icon-down" class="fa-solid fa-chevron-down" tabindex="3"></i></div>
+                    <div class="select_box" tabindex="0"><span>Popularité</span> <i id="dropdown-icon-down" class="fa-solid fa-chevron-down" alt="trier par"></i></div>
                     <div class="select_menu">
-                        <button class="menu_btn" data-sort-criterion="popularite" tabindex="3">Popularité<i id="dropdown-icon-up" class="fa-solid fa-chevron-up"></i></button>
-                        <button class="menu_btn" data-sort-criterion="date" tabindex="3">Date</button>
-                        <button class="menu_btn" data-sort-criterion="titre" tabindex="3">Titre</button>
-                        <!-- / tenter de faire une liste pour le dropdown -->
+                        <button class="menu_btn" data-sort-criterion="popularite" alt="popularité">Popularité<i id="dropdown-icon-up" class="fa-solid fa-chevron-up"></i></button>
+                        <button class="menu_btn" data-sort-criterion="date" alt="popularité">Date</button>
+                        <button class="menu_btn" data-sort-criterion="titre" alt="popularité">Titre</button>
                     </div>
                 </div>
             </div>
@@ -59,12 +58,12 @@
             <div class="modal">
                 <header>
                     <h2 id="formTitle">Contactez-moi</h2>
-                    <img src="assets/icons/close.svg" />
+                    <img src="assets/icons/close.svg" tabindex="0" />
                 </header>
                 <form>
                     <div>
                         <label id="label_prenom" for="input_prenom">Prénom</label>
-                        <input type="text" name="prenom" id="input_prenom" aria-labelledby="label_prenom" aria-describedby="label_prenom" placeholder="Entrez votre Prénom" />
+                        <input type="text" name="prenom" id="input_prenom" aria-labelledby="label_prenom" aria-describedby="label_prenom" placeholder="Entrez votre Prénom" autofocus />
                         <div id="prenom_error"></div>
 
                         <label id="label_nom" for="input_nom">Nom</label>

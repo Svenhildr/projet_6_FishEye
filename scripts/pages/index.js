@@ -5,17 +5,17 @@ fetch("data/photographers.json")
         return response.json();
     })
     .then((datas) => {
-        // console.log(datas);
+        // Extraction des photographes du jeu de données
         const { photographers } = datas;
+        // Appel de la fonction pour afficher les cartes des photographes
         displayData(photographers);
     });
 
-/* let logoImg = document.querySelector(" .logo");
-logoImg.addEventListener("click", () => {
-    window.location.href = `index.html`;
-    logoImg.setAttribute("alt", "Fisheye home page");
-}); */
-
+/**
+ * Affiche les cartes des photographes sur la page.
+ *
+ * @param {Array} photographers - La liste des photographes à afficher.
+ */
 function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
@@ -25,73 +25,3 @@ function displayData(photographers) {
         photographersSection.appendChild(userCardDOM);
     });
 }
-
-/*     async function init() {
-      // Récupère les datas des photographes
-      const { photographers } = await getPhotographers();
-
-    }
-
-    init(); */
-
-/* async function getPhotographers() {
-  // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet,  
-  // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
-  let photographers = [
-    {
-      name: "Ma data test",
-      id: 1,
-      city: "Paris",
-      country: "France",
-      tagline: "Ceci est ma data test",
-      price: 400,
-      portrait: "account.png",
-    },
-    {
-      name: "Autre data test",
-      id: 2,
-      city: "Londres",
-      country: "UK",
-      tagline: "Ceci est ma data test 2",
-      price: 500,
-      portrait: "account.png",
-    },
-    {
-      name: "coucou",
-      id: 3,
-      city: "Caen",
-      country: "France",
-      tagline: "Coucou, c'est moi",
-      price: 10000500,
-      portrait: "account.png",
-    },
-  ];
-  // et bien retourner le tableau photographers seulement une fois récupéré
-  return {
-    photographers: [...photographers, ...photographers, ...photographers],
-  };
-}
-
-async function displayData(photographers) {
-  const photographersSection = document.querySelector(".photographer_section");
-
-  photographers.forEach((photographer) => {
-    const photographerModel = photographerTemplate(photographer);
-    const userCardDOM = photographerModel.getUserCardDOM();
-    photographersSection.appendChild(userCardDOM);
-
-    const link = document.createElement("a");
-    link.href = `photographer.html?id=${photographer.id}`; // L'URL avec ID du photographe
-    link.appendChild(userCardDOM); // Ajoute carte photographe au lien
-
-    photographersSection.appendChild(link);
-  });
-}
-
-async function init() {
-  // Récupère les datas des photographes
-  const { photographers } = await getPhotographers();
-  displayData(photographers);
-}
-
-init(); */

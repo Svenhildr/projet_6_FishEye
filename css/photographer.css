@@ -150,6 +150,7 @@ form input {
     width: 90%;
     max-width: 1240px;
     position: relative;
+    padding-bottom: 50px;
 }
 .card_content {
     display: flex;
@@ -184,9 +185,21 @@ form input {
 .like_btn,
 .photo_title {
     color: #901c1c;
-    font-weight: 600;
+    font-weight: 700;
     padding: 0 5px;
 }
+
+.title_media,
+.Photo_likes,
+.like_btn {
+    font-size: 19px;
+}
+
+.like_btn {
+    border: none;
+    background: none;
+}
+
 .likes_container {
     display: flex;
     justify-content: space-between;
@@ -299,6 +312,7 @@ form input {
     width: 85%;
     height: 95%;
     object-fit: cover;
+    overflow: hidden;
 }
 
 #lightbox_container > .icon-nav {

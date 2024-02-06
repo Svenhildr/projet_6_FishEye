@@ -10,27 +10,32 @@ const nomInput = document.getElementById("input_nom");
 const emailInput = document.getElementById("input_email");
 const messageInput = document.getElementById("input_message");
 
+// Expressions régulières pour la validation des champs
 const nameRegex = /^[a-zA-Z]{2,}$/;
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
+// Initialisation du style de la modal
 modal.style.display = "none";
 
+// Ajout des gestionnaires d'événements pour ouvrir et fermer la modal
 openModalBtn.addEventListener("click", openModal);
 modalCloseBtn.addEventListener("click", closeModal);
 modalCloseBtn.setAttribute("aria-label", "close button");
 
-//ouverture de modal
+/**
+ * Ouverture de la modal.
+ */
 function openModal() {
     mainWrapper.setAttribute("aria-hidden", "true");
-    // mainWrapper.style.display = "none";
-
     modal.setAttribute("aria-hidden", "false");
     body.classList.add("no-scroll");
     modal.style.display = "flex";
-    modalCloseBtn.focus();
+    prenomInput.focus();
 }
 
-// Fonction pour fermer la modal
+/**
+ * fermeture de la modal.
+ */
 function closeModal() {
     mainWrapper.setAttribute("aria-hidden", "false");
     mainWrapper.style.display = "block";
@@ -40,14 +45,18 @@ function closeModal() {
     openModalBtn.focus();
 }
 
-// gestion de la fermeture de la modal lorsque clic en dehors de celle-ci
+/**
+ * Gestion de la fermeture de la modal lorsqu'un clic est effectué en dehors d'elle.
+ */
 document.addEventListener("click", (event) => {
     if (event.target === modal) {
         closeModal();
     }
 });
 
-// gestion de la fermeture de la modal en appuyant sur la touche Échap
+/**
+ * Gestion de la fermeture de la modal en appuyant sur la touche Échap.
+ */
 document.addEventListener("keydown", (event) => {
     const isContactFormOpen = modal.style.display === "flex" ? true : false;
 
@@ -56,6 +65,9 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
+/**
+ * Ajoute un gestionnaire d'événements pour la soumission du formulaire.
+ */
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (checkInput()) {
@@ -63,13 +75,17 @@ form.addEventListener("submit", (event) => {
         console.log("Prénom: " + prenomInput.value);
         console.log("Nom: " + nomInput.value);
         console.log("Email: " + emailInput.value);
-        console.log("Email: " + messageInput.value);
+        console.log("Message: " + messageInput.value);
         closeModal();
     } else {
         return console.log("erreur de l'envoi du formulaire");
     }
 });
 
+/**
+ * Fonction pour vérifier la validité des champs du formulaire.
+ * @returns {boolean} - true si le formulaire est valide, sinon false.
+ */
 function checkInput() {
     const prenomValue = prenomInput.value;
     const nomValue = nomInput.value;

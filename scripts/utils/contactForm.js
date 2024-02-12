@@ -12,7 +12,7 @@ const messageInput = document.getElementById("input_message");
 
 // Expressions régulières pour la validation des champs
 const nameRegex = /^[a-zA-Z]{2,}$/;
-const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 // Initialisation du style de la modal
 modal.style.display = "none";

@@ -46,7 +46,6 @@ export default function mediaCardTemplate(data) {
         cardContent.classList.add("card_content");
 
         const mediaElt = imageOrVideo(video, photographerId, title, image);
-        // mediaElt.tabIndex = 4;
         cardContent.appendChild(mediaElt);
 
         const infoDiv = document.createElement("div");
@@ -65,12 +64,10 @@ export default function mediaCardTemplate(data) {
         const likesElt = document.createElement("span");
         likesElt.classList.add("likes_media");
         likesElt.textContent = ` ${likes}`;
-        // likesElt.setAttribute("role", "status");
         photoLikesContainer.appendChild(likesElt);
 
         const likeBtnContainer = document.createElement("button");
         likeBtnContainer.classList.add("like_btn");
-        /*         likeBtnContainer.setAttribute("tabindex", 0);*/
         likeBtnContainer.setAttribute("aria-label", `Aimer ce média : ${title}`);
         photoLikesContainer.appendChild(likeBtnContainer);
 

@@ -3,17 +3,11 @@ const url = new URL(window.location.href);
 const photographerId = url.searchParams.get("id");
 
 //Eléments du DOM
-const dropdownIconDown = document.getElementById("dropdown-icon-down");
 const dropdownIconUp = document.getElementById("dropdown-icon-up");
 const selectBox = document.querySelector(".select_box");
 const selectMenu = document.querySelector(".select_menu");
-const firstMenuBtn = selectMenu.querySelector(".menu_btn");
 const menuBtns = document.querySelectorAll(".menu_btn");
-const firstIcon = firstMenuBtn.querySelector("i");
-const sortBtn = document.querySelector(".menu_btn");
 const likesContainer = document.querySelector(".likes_container");
-const likeBtns = document.querySelectorAll(".like_btn");
-let photoLikes = document.querySelector(".likes_media");
 
 // Import des modules et des templates
 import mediaCardTemplate from "../templates/cardPhotographs.js";
@@ -23,7 +17,6 @@ import sortMedia from "../templates/sortList.js";
 import calculateTotalLikes from "../templates/Likes.js";
 
 // Initialisation des variables
-let mediasPhotographer;
 let selectedPhotographer;
 let photographers;
 let photoContainer = document.querySelector(".photo_container");
@@ -79,16 +72,12 @@ function displayInfoPhotographer(selectedPhotographer) {
     portraitElt.setAttribute("alt", `portrait de ${selectedPhotographer.name}`);
 }
 
-let menuOpen = false;
-
 /**
  * Gestionnaire d'événements pour l'ouverture du dropdown.
  */
 selectBox.addEventListener("click", function () {
-    selectBox.style.display = "none";
+    /* selectBox.style.display = "none"; */
     selectMenu.style.display = "block";
-    menuOpen = true;
-    console.log("toto");
 });
 
 /**
@@ -98,12 +87,10 @@ selectBox.addEventListener("keydown", (event) => {
     selectBox.style.display = "none";
     selectMenu.style.display = "block";
 
-    menuOpen = true;
-
     if (dropdownIconUp && event.key === "Escape") {
         menuClose();
     } else if (dropdownIconUp && event.key === "Enter") {
-        filterBtns(medias, photographers, selectedPhotographer);
+        filterBtns(photographers, selectedPhotographer);
     }
 });
 
@@ -157,7 +144,7 @@ function filterBtns(medias, photographers, selectedPhotographer) {
  * @param {Object} photographers - Tous les photographes disponibles.
  * @param {Array} media - Les médias du photographe actuellement affichés.
  */
-function displayLikeAdd({ photographers, media: mediasPhotographer }) {
+function displayLikeAdd() {
     const likeBtns = document.querySelectorAll(".like_btn");
     let totalLikes = document.getElementById("total_likes");
 
@@ -200,7 +187,6 @@ function menuClose() {
     const selectBox = document.querySelector(".select_box");
     selectBox.style.display = "flex";
     selectMenu.style.display = "none";
-    menuOpen = false;
 }
 
 /**
@@ -261,8 +247,6 @@ function toggleLike(button, selectedLike, totalLikes) {
         const likesValue = parseInt(selectedLike.textContent);
         const updatedLikesValue = likesValue - 1;
         selectedLike.textContent = updatedLikesValue;
-        console.log(selectedLike.textContent);
-
         const totalLikeValue = parseInt(totalLikes.textContent);
         const updatedTotalLikes = totalLikeValue - 1;
         totalLikes.textContent = updatedTotalLikes;
@@ -271,7 +255,6 @@ function toggleLike(button, selectedLike, totalLikes) {
         // iconToUpdate.classList.remove("fa-regular"); // On supprimer la classe (coeur plein)
         // iconToUpdate.classList.add("fa-solid");
         const likesValue = parseInt(selectedLike.textContent);
-        console.log(selectedLike.textContent);
         const updatedLikesValue = likesValue + 1;
         selectedLike.textContent = updatedLikesValue;
 

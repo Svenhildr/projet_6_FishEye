@@ -21,6 +21,7 @@ modal.style.display = "none";
 openModalBtn.addEventListener("click", openModal);
 modalCloseBtn.addEventListener("click", closeModal);
 modalCloseBtn.setAttribute("aria-label", "close button");
+modalCloseBtn.setAttribute("alt", "Fermeture formulaire");
 
 /**
  * Ouverture de la modal.

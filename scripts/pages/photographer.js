@@ -76,7 +76,6 @@ function displayInfoPhotographer(selectedPhotographer) {
  * Gestionnaire d'événements pour l'ouverture du dropdown.
  */
 selectBox.addEventListener("click", function () {
-    /* selectBox.style.display = "none"; */
     selectMenu.style.display = "block";
 });
 
@@ -149,16 +148,10 @@ function displayLikeAdd() {
     let totalLikes = document.getElementById("total_likes");
 
     likeBtns.forEach(function (button) {
-        /*         button.setAttribute("role", "button");
-        button.setAttribute("tabindex", "4"); */
-
         button.addEventListener("click", function (event) {
             event.preventDefault();
             const parentContainer = button.closest(".Photo_likes");
-            /*             if (!parentContainer) {
-                console.error("Parent container not found.");
-                return;
-            } */
+
             //limite à 1 like par photo, si 2 clics, le like est retiré
             const selectedLike = parentContainer.querySelector(".likes_media");
             if (!selectedLike) {
@@ -233,17 +226,9 @@ function updateTotal(totalLikes) {
  * @param {HTMLElement} totalLikes - L'élément HTML affichant le nombre total de likes pour le photographe.
  */
 function toggleLike(button, selectedLike, totalLikes) {
-    // let iconToUpdate = button.firstChild;
-
-    /*     if (!button || !selectedLike || !totalLikes) {
-        console.error("One of the elements is null");
-        return;
-    } */
-
     if (button.classList.contains("liked")) {
         button.classList.remove("liked");
-        // iconToUpdate.classList.remove("fa-solid"); // On supprimer la classe (coeur plein)
-        // iconToUpdate.classList.add("fa-regular");
+
         const likesValue = parseInt(selectedLike.textContent);
         const updatedLikesValue = likesValue - 1;
         selectedLike.textContent = updatedLikesValue;
@@ -252,8 +237,6 @@ function toggleLike(button, selectedLike, totalLikes) {
         totalLikes.textContent = updatedTotalLikes;
     } else {
         button.classList.add("liked");
-        // iconToUpdate.classList.remove("fa-regular"); // On supprimer la classe (coeur plein)
-        // iconToUpdate.classList.add("fa-solid");
         const likesValue = parseInt(selectedLike.textContent);
         const updatedLikesValue = likesValue + 1;
         selectedLike.textContent = updatedLikesValue;

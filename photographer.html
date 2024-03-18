@@ -1,42 +1,95 @@
-ù<!DOCTYPE html>
-<html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="assets/favicon.png" />
-    <link
-      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <title>Fisheye - photographe</title>
-  </head>
-  <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">
-          Contactez-moi
-        </button>
-      </div>
-    </main>
-    <div id="contact_modal">
-      <div class="modal">
+<!DOCTYPE html>
+<html lang="Fr">
+    <head>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="css/photographer.css" rel="stylesheet" type="text/css" />
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" href="assets/favicon.png" />
+        <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/b50abd1df8.js" crossorigin="anonymous"></script>
+        <title>Fisheye - photographe</title>
+    </head>
+    <body>
         <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+            <a href="index.html" aria-label="accéder à la page d'accueil" tabindex="0">
+                <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
+            </a>
         </header>
-        <form>
-          <div>
-            <label>Prénom</label>
-            <input />
-          </div>
-          <button class="contact_button">Envoyer</button>
-        </form>
-      </div>
-    </div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
-  </body>
+        <main id="main">
+            <div class="photograph-header">
+                <div class="header_info">
+                    <h1 id="name"></h1>
+                    <span id="city"></span>
+                    <p id="quote"></p>
+                </div>
+                <button class="contact_button">Contactez-moi</button>
+                <img class="card_img" src="" alt="" id="portrait" />
+                <!-- <button class="contact_button" onclick="openModal()">Contactez-moi</button> -->
+            </div>
+            <div class="photograph-container">
+                <div class="select_container">
+                    <span>Trier par</span>
+                    <div class="select_box" tabindex="0"><span>Popularité</span> <i id="dropdown-icon-down" class="fa-solid fa-chevron-down" alt="trier par"></i></div>
+                    <div class="select_menu">
+                        <button class="menu_btn" data-sort-criterion="popularite" alt="popularité">Popularité<i id="dropdown-icon-up" class="fa-solid fa-chevron-up"></i></button>
+                        <button class="menu_btn" data-sort-criterion="date" alt="popularité">Date</button>
+                        <button class="menu_btn" data-sort-criterion="titre" alt="popularité">Titre</button>
+                    </div>
+                </div>
+            </div>
+            <div class="photo_container">
+                <!-- <div class="photo_content">
+                        <img class="card_photo media_elt" src="" alt="" /> 
+                            <div class="photo_info">
+                            <p class="photo_title"></p>
+                            <span class="photo_likes"></span> 
+                            <i class="fa-sharp fa-solid fa-heart heart-full"></i>
+                            </div> 
+                    </div> -->
+            </div>
+            <div class="likes_container">
+                <span id="total_likes"></span>
+                <!-- <i class="fa-sharp fa-solid fa-heart heart-full"></i> -->
+                <span id="price"></span>
+            </div>
+        </main>
+        <div id="contact_modal">
+            <div class="modal">
+                <header>
+                    <h2 id="formTitle">Contactez-moi</h2>
+                    <img src="assets/icons/close.svg" tabindex="0" />
+                </header>
+                <form>
+                    <div>
+                        <label id="label_prenom" for="input_prenom">Prénom</label>
+                        <input type="text" name="prenom" id="input_prenom" placeholder="Entrez votre Prénom" autofocus />
+                        <div id="prenom_error"></div>
+
+                        <label id="label_nom" for="input_nom">Nom</label>
+                        <input type="text" name="nom" id="input_nom" placeholder="Entrez votre Nom" />
+                        <div id="nom_error"></div>
+
+                        <label id="label_email" for="input_email">Email</label>
+                        <input type="email" name="email" id="input_email" placeholder="Entrez votre adresse email" />
+                        <div id="email_error"></div>
+
+                        <label id="label_message" for="input_message">Votre message</label>
+                        <input name="message" id="input_message" placeholder="Entrez votre message" />
+                    </div>
+                    <button type="submit" class="contact_button">Envoyer</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="lightbox_container">
+            <!-- <img class="lightbox_close" src="assets/icons/close.svg" /> -->
+            <div class="icon-nav"></div>
+            <p class="photo_title"></p>
+        </div>
+
+        <!-- <script src="/scripts/templates/sortList.js"></script> -->
+        <script type="module" src="/scripts/pages/photographer.js"></script>
+        <script src="/scripts/utils/contactForm.js"></script>
+        <!-- <script type="module" src="/scripts/utils/lightbox.js"></script> -->
+    </body>
 </html>

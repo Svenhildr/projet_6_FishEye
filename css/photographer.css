@@ -1,11 +1,25 @@
 #contact_modal {
     display: none;
+    display: flex;
+    flex-direction: column;
 }
 
 .photograph-header {
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     height: 300px;
-    margin: 0 100px;
+    width: 90%;
+    max-width: 1240px;
+    margin: 25px auto;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+
+.photograph-header > .header_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .contact_button {
@@ -16,36 +30,52 @@
     width: 170px;
     height: 70px;
     border: none;
-    background-color: #901C1C;
+    background-color: #901c1c;
     border-radius: 5px;
     cursor: pointer;
 }
+.contact_button:hover {
+    color: black;
+    background-color: #db8876;
+}
 
-.modal {
+.modal > h2 {
+    margin: 10px;
+    font-size: 30px !important;
+}
+
+.modal,
+.contact_form {
     border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
+    background-color: #db8876;
+    width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    gap: 10px;
+    position: absolute;
+    top: 15%;
+    left: 35%;
 }
 
 .modal header {
     justify-content: space-between;
     width: 100%;
-}
-
-.modal header img {
-    cursor: pointer;
+    position: relative;
+    height: 24px;
 }
 
 .modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
+    font-size: 36px;
+    padding-top: 25px;
+    margin-bottom: 20px;
+    color: black;
+    font-weight: 500;
+    text-align: left;
+    text-wrap: nowrap;
 }
 
 form {
@@ -54,10 +84,13 @@ form {
     flex-direction: column;
     align-items: flex-start;
 }
+form > div {
+    margin-top: 30px;
+}
 
 form label {
-    color: #312E2E;
-    font-size: 36px;
+    color: #312e2e;
+    font-size: 25px;
 }
 
 form div {
@@ -68,9 +101,243 @@ form div {
     margin-bottom: 26px;
 }
 
+#input_message {
+    margin: 0;
+    height: 150px !important;
+}
 form input {
     width: 100%;
-    height: 68px;
+    height: 45px;
     border: none;
     border-radius: 5px;
+}
+
+#prenom_error,
+#nom_error,
+#email_error {
+    color: #901c1c;
+    font-weight: 700;
+}
+
+#name {
+    color: #d3573c;
+    font-size: 3rem;
+    font-weight: 400;
+    margin: 0;
+}
+#city {
+    color: #901c1c;
+    font-size: 1.5rem;
+}
+#quote {
+    color: #525252;
+    font-size: 1.1rem;
+    margin-top: 25px;
+}
+
+.photograph-container {
+    margin: auto;
+    width: 90%;
+    max-width: 1240px;
+}
+
+.photo_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    margin: auto;
+    width: 90%;
+    max-width: 1240px;
+    position: relative;
+    padding-bottom: 50px;
+}
+.card_content {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    margin: 0 7px;
+    max-width: 350px;
+    height: 350px;
+    cursor: pointer;
+}
+.card_image,
+.card_video {
+    border-radius: 5px;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 80%;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.info_media {
+    background-color: white;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.title_media,
+.likes_media,
+.like_btn,
+.photo_title {
+    color: #901c1c;
+    font-weight: 700;
+    padding: 0 5px;
+}
+
+.title_media,
+.Photo_likes,
+.like_btn {
+    font-size: 19px;
+}
+
+.like_btn {
+    border: none;
+    background: none;
+}
+
+.likes_container {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 25px;
+    color: black;
+    background-color: #db8876;
+    font-weight: 600;
+    font-size: larger;
+    width: 200px;
+    border-radius: 10px 10px 0 0;
+    position: fixed;
+    bottom: 0;
+    right: 17%;
+    z-index: 999;
+}
+
+.select_container {
+    display: flex;
+    align-items: baseline;
+    margin: 50px 0 30px 0;
+    position: relative;
+}
+
+.select_container > span {
+    margin-right: 20px;
+    font-size: 1.17em;
+    font-weight: bold;
+}
+
+.select_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 0px 10px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    background-color: #901c1c;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.select_menu {
+    display: none;
+    align-items: center;
+    width: 170px;
+    border-radius: 5px 5px;
+    background-color: #901c1c;
+    z-index: 999;
+    left: 92px;
+    position: absolute;
+}
+
+.menu_btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 0 5px;
+    color: white;
+    border: none;
+    border-bottom: #db8876;
+    background-color: #901c1c;
+    width: 95%;
+    height: 50px;
+    cursor: pointer;
+    /* position: absolute; */
+}
+.menu_btn:hover {
+    background-color: #db8876;
+    width: 100%;
+    margin: 0;
+    padding: 0 11px;
+    border-radius: 5px 5px;
+}
+
+.close_icon_lightbox {
+    color: #db8876;
+}
+
+#lightbox_container {
+    display: none;
+    flex-direction: column-reverse;
+    position: fixed;
+    justify-content: center;
+    top: 8%;
+    left: 10%;
+    z-index: 0;
+    width: 80%;
+    height: 90%;
+    padding-bottom: 50px;
+    background-color: white;
+    box-sizing: border-box;
+}
+#lightbox_container > .photo_title {
+    position: absolute;
+    bottom: 15px;
+    left: 130px;
+    background-color: white;
+}
+
+.mediaLightBox {
+    position: relative;
+    left: 9%;
+    top: 10px;
+    width: 85%;
+    height: 95%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+#lightbox_container > .icon-nav {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+}
+
+.chevron-nav {
+    font-size: 50px;
+    /* z-index: 999; */
+    color: #901c1c;
+}
+#nav-icon-left {
+    padding-left: 30px;
+}
+#nav-icon-right {
+    padding-right: 6px;
+}
+
+.close_btn {
+    width: 42px;
+    position: absolute;
+    top: 5%;
+    right: 0%;
 }

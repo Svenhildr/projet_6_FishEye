@@ -200,7 +200,7 @@ function displayTotalAndPrice(selectedPhotographer, mediasPhotographer) {
     totalLikesContainer.classList.add("Photo_likes");
     likesContainer.appendChild(totalLikesContainer);
 
-    const heartIcon = document.createElement("i");
+    const heartIcon = document.querySelector(".total_likes_icon");
     heartIcon.classList.add("fa-sharp", "fa-solid", "fa-heart", "heart-full");
 
     totalLikesContainer.appendChild(totalLikesElt);

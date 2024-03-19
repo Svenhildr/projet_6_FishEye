@@ -50,8 +50,7 @@ article {
     width: 200px;
     border-radius: 50%;
     object-fit: cover;
-    overflow: clip;
-    overflow-clip-margin: inherit;
+    overflow-clip-margin: unset;
     display: flex;
     justify-self: center;
 }

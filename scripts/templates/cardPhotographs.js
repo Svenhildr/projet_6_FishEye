@@ -71,7 +71,7 @@ export default function mediaCardTemplate(data) {
         likeBtnContainer.setAttribute("aria-label", `Aimer ce média : ${title}`);
         photoLikesContainer.appendChild(likeBtnContainer);
 
-        const heartIcon = document.createElement("i");
+        const heartIcon = document.createElement("em");
         heartIcon.classList.add("fa-sharp", "fa-solid", "fa-heart", "heart-full", "like_btn_icon");
         likeBtnContainer.appendChild(heartIcon);
 

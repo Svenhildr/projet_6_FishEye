@@ -26,7 +26,7 @@ export default function lightbox(data) {
          * @returns {HTMLElement} - L'élément de bouton de navigation créé.
          */
         const createButton = (id, iconClass) => {
-            const button = document.createElement("i");
+            const button = document.createElement("em");
             button.id = id;
             button.classList.add("fas", iconClass, "chevron-nav");
             button.style.display = "block";
@@ -50,6 +50,22 @@ export default function lightbox(data) {
         nextBtn.addEventListener("click", () => handleNavigation(-1));
         lightboxCloseBtn.addEventListener("click", closeLightbox);
     }
+
+    /**
+     * Gestion des événements clavier.
+     */
+    document.addEventListener("keydown", (event) => {
+        const isLightboxOpen = lightboxModal && lightboxModal.style.display === "flex";
+        if (isLightboxOpen) {
+            if (event.key === "Escape") {
+                closeLightbox();
+            } else if (event.key === "ArrowLeft") {
+                handleNavigation(-1);
+            } else if (event.key === "ArrowRight") {
+                handleNavigation(1);
+            }
+        }
+    });
 
     /**
      * Gestion de la navigation entre les médias dans la lightbox.
@@ -80,23 +96,6 @@ export default function lightbox(data) {
         main.setAttribute("aria-hidden", "false");
         main.style.display = "block";
     }
-
-    /**
-     * Gestion des événements clavier.
-     */
-    document.addEventListener("keydown", (event) => {
-        const isLightboxOpen = lightboxModal && lightboxModal.style.display === "flex";
-
-        if (isLightboxOpen) {
-            if (event.key === "Escape") {
-                closeLightbox();
-            } else if (event.key === "ArrowLeft") {
-                handleNavigation(-1);
-            } else if (event.key === "ArrowRight") {
-                handleNavigation(1);
-            }
-        }
-    });
 
     /**
      * Ouverture de la lightbox sur clic ou appui sur Entrée.
@@ -157,7 +156,6 @@ export default function lightbox(data) {
             video.setAttribute("type", "video/mp4");
             video.setAttribute("aria-label", clickedMedia.title);
             video.autoplay = true;
-            // video.controls = true;
             return video;
         }
     }
